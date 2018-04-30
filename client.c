@@ -183,6 +183,8 @@ int main(int argc, char ** argv) {
             
             struct client* tmp = (struct client*) malloc(sizeof(struct client));
             
+            // How do we know this is enough characters?
+            // Murray said use a buffer to  catch!? Know how much you need before allocating
             tmp->firstName = (char *) malloc(80 * sizeof(char));
             tmp->lastName = (char *) malloc(80 * sizeof(char));
             tmp->emailAddress = (char *) malloc(80 * sizeof(char));
@@ -216,6 +218,7 @@ int main(int argc, char ** argv) {
         
         if (command == 0) {
             printf("\nExiting program.. You pressed 0.\n");
+            free(val);
             break;
         }
 
@@ -257,8 +260,9 @@ int main(int argc, char ** argv) {
             printf("FAILURE. Did not find:: %s\n", val);    
         }
 
-        free(val);       
+        free(val);   
     }
+    
 
     // free all remaining memory allocated
     free_all(clientArray);
